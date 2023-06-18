@@ -10,6 +10,7 @@ pip install ifnude
 ```
 
 ### Example
+> Note: Importing ifnude for the first time will download a 139MB module to "/your/home/dir/.ifnude" directory, just once.
 ```python
 from ifnude import detect
 
