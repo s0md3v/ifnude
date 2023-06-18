@@ -1,7 +1,5 @@
-import os
 import io
 import cv2
-import pydload
 import logging
 import numpy as np
 
