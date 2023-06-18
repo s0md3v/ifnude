@@ -2,8 +2,9 @@ import os
 import cv2
 import numpy as np
 import onnxruntime
+from pathlib import Path
 from tqdm import tqdm
-import urllib
+import urllib.request
 
 from .detector_utils import preprocess_image
 
@@ -21,8 +22,8 @@ model_url = "https://huggingface.co/s0md3v/nudity-checker/resolve/main/detector.
 classes_url = "https://huggingface.co/s0md3v/nudity-checker/resolve/main/classes"
 
 
-home = os.path.expanduser("~")
-model_folder = os.path.join(home, f".models/")
+home = Path.home()
+model_folder = os.path.join(home, f".ifnude/")
 if not os.path.exists(model_folder):
     os.makedirs(model_folder)
 
@@ -43,7 +44,7 @@ classes = [c.strip() for c in open(classes_path).readlines() if c.strip()]
 def detect(img, mode="default", min_prob=None):
     # we are loading the model on every detect() because it crashes otherwise for some reason xD
     detection_model = onnxruntime.InferenceSession(model_path, providers=["CPUExecutionProvider"])
-    
+
     if mode == "fast":
         image, scale = preprocess_image(img, min_side=480, max_side=800)
         if not min_prob:
