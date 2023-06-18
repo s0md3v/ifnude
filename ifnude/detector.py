@@ -1,9 +1,9 @@
 import os
 import cv2
-import logging
 import numpy as np
 import onnxruntime
 from tqdm import tqdm
+import urllib
 
 from .detector_utils import preprocess_image
 
@@ -93,7 +93,6 @@ def censor(img_path, out_path=None, visualize=False, parts_to_blur=[]):
         boxes = [i["box"] for i in boxes]
 
     for box in boxes:
-        part = image[box[1] : box[3], box[0] : box[2]]
         image = cv2.rectangle(
             image, (box[0], box[1]), (box[2], box[3]), (0, 0, 0), cv2.FILLED
         )
