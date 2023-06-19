@@ -1,6 +1,6 @@
-# ifnude
+# ifnude - nudity detection that just works
 
-It is a nudity detection library that actually works, on both on humans and drawings.. It tells you exactly what NSFW parts of the body are visible. Optionally, you can censor the said parts.
+A neural nets powered library that can detect nudity in images of both real humans and drawings. It takes an image as input and tells you exactly what NSFW parts of the body are visible. Optionally, you can censor the said parts.
 
 <img src="https://i.imgur.com/0KPJbl9.jpg" width=600>
 
@@ -10,7 +10,7 @@ pip install ifnude
 ```
 
 ### Example
-> Note: Importing ifnude for the first time will download a 139MB module to "/your/home/dir/.ifnude" directory, just once.
+> Note: Importing ifnude for the first time will download a 139MB module to "/your/home/dir/.ifnude/", just once.
 ```python
 from ifnude import detect
 
@@ -18,9 +18,14 @@ from ifnude import detect
 print(detect('/path/to/nsfw.png'))
 ```
 
+Instead of a path, you can use a variable that contains an image loaded through `cv2` (opencv) or `PIL` (pillow).
+
 #### Output
 ```
-[{'box': [164, 188, 246, 271], 'score': 0.8253238201141357, 'label': 'EXPOSED_BREAST_F'}, {'box': [252, 190, 335, 270], 'score': 0.8235630989074707, 'label': 'EXPOSED_BREAST_F'}]
+[
+  {'box': [164, 188, 246, 271], 'score': 0.8253238201141357, 'label': 'EXPOSED_BREAST_F'},
+  {'box': [252, 190, 335, 270], 'score': 0.8235630989074707, 'label': 'EXPOSED_BREAST_F'}
+]
 ```
 
 ### Credits
